@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "test-ci": {
+    "watchlist-angular": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/test-ci",
+            "outputPath": "dist/watchlist-angular",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -69,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "test-ci:build:production"
+              "browserTarget": "watchlist-angular:build:production"
             },
             "development": {
-              "browserTarget": "test-ci:build:development"
+              "browserTarget": "watchlist-angular:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -80,17 +80,19 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "test-ci:build"
+            "browserTarget": "watchlist-angular:build"
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@angular-builders/jest:run",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": [
+              "src/polyfills.ts"
+            ],
             "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
-            "inlineStyleLanguage": "scss",
+            "inlineStyleLanguage": [
+              "scss"
+            ],
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -100,8 +102,80 @@
             ],
             "scripts": []
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
+        },
+        "cypress-run": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "watchlist-angular:serve"
+          },
+          "configurations": {
+            "chrome": {
+              "browser": "chrome",
+              "devServerTarget": "watchlist-angular:serve:production"
+            },
+            "edge": {
+              "browser": "edge",
+              "devServerTarget": "watchlist-angular:serve:production"
+            },
+            "firefox": {
+              "browser": "firefox",
+              "devServerTarget": "watchlist-angular:serve:production"
+            },
+            "production": {
+              "devServerTarget": "watchlist-angular:serve:production"
+            }
+          }
+        },
+        "cypress-open": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "headless": false,
+            "watch": true
+          }
+        },
+        "ct": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "watchlist-angular:serve",
+            "headless": false,
+            "testingType": "component",
+            "watch": true
+          },
+          "configurations": {
+            "development": {
+              "devServerTarget": "watchlist-angular:serve:development"
+            }
+          }
+        },
+        "e2e": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "watchlist-angular:serve",
+            "headless": false,
+            "watch": true
+
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "watchlist-angular:serve:production"
+            }
+          }
         }
       }
     }
+  },
+  "cli": {
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }
