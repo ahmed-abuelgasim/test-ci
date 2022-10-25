@@ -9,11 +9,11 @@
     "lint:sass": "npx stylelint \"**/*.scss\"",
     "ng": "ng",
     "start": "ng serve",
-    "test:unit": "ng test",
-    "watch": "ng build --watch --configuration development",
     "test:e2e:chrome": "ng run watchlist-angular:cypress-run:chrome",
     "test:e2e:edge": "ng run watchlist-angular:cypress-run:edge",
-    "test:e2e:firefox": "ng run watchlist-angular:cypress-run:firefox"
+    "test:e2e:firefox": "ng run watchlist-angular:cypress-run:firefox",
+    "test:unit": "ng test",
+    "watch": "ng build --watch --configuration development"
   },
   "private": true,
   "dependencies": {
