@@ -78,13 +78,12 @@ jobs:
         run: npm run test:unit
 
   e2e-tests:
-    strategy:
-        matrix:
-          browser: ['chrome', 'edge', 'firefox']
-
     name: End to End tests
     needs: [deps]
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        browser: ['chrome', 'edge', 'firefox']
     steps:
       - name: Checkout
         uses: actions/checkout@v3

@@ -4,8 +4,8 @@
   "scripts": {
     "build": "ng build",
     "e2e": "ng e2e",
-    "lint": "npm run lint:sass && npm run lint:ng",
-    "lint:ng": "ng lint",
+    "lint": "npm run lint:sass && npm run lint:ts",
+    "lint:ts": "ng lint",
     "lint:sass": "npx stylelint \"**/*.scss\"",
     "ng": "ng",
     "start": "ng serve",
