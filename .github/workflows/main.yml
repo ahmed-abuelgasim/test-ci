@@ -106,5 +106,3 @@ jobs:
           key: ${{ runner.os }}-cypress-cache-${{ hashFiles('cypress/cache/**') }}
       - name: Test
         run: npm run test:e2e:${{ matrix.browser }}
-
-# use matrix for e2e tests
