@@ -105,10 +105,10 @@ jobs:
         with:
           path: cypress/cache
           key: ${{ runner.os }}-cypress-cache-${{ hashFiles('package.json', 'package-lock.json') }}
-      - name: Install angular
-        run: |
-          npm i -g @angular/cli
-          ng add @cypress/schematic --skip-confirmation
+      # - name: Install angular
+      #   run: |
+      #     npm i -g @angular/cli
+      #     ng add @cypress/schematic --skip-confirmation
       - name: Test
         id: e2e-tests
         run: npm run test:e2e:${{ matrix.browser }}
