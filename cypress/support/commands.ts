@@ -41,3 +41,17 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+
+declare namespace Cypress {
+  interface Chainable<Subject = any> {
+    matchImageSnapshot(param: any): typeof matchImageSnapshot;
+  }
+}
+
+
+// @ts-ignore
+import { addMatchImageSnapshotCommand, matchImageSnapshot } from '@simonsmith/cypress-image-snapshot/command';
+
+
+addMatchImageSnapshotCommand();

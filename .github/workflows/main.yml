@@ -104,4 +104,11 @@ jobs:
           path: cypress/cache
           key: ${{ runner.os }}-cypress-cache-${{ hashFiles('cypress/cache/**') }}
       - name: Test
+        id: e2e-tests
         run: npm run test:e2e:${{ matrix.browser }}
+      - name: Upload diffs as artifacts
+        uses: actions/upload-artifact@v3
+        if: failure() && steps.e2e-tests.outcome == 'failure'
+        with:
+          name: visual-regression-diffs
+          path: cypress/snapshots/cypress/e2e/*/__diff_output__
