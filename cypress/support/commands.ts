@@ -54,6 +54,4 @@ declare namespace Cypress {
 import { addMatchImageSnapshotCommand, matchImageSnapshot } from '@simonsmith/cypress-image-snapshot/command';
 
 
-addMatchImageSnapshotCommand({
-  customDiffConfig: { threshold: 0.85 },
-});
+addMatchImageSnapshotCommand();
