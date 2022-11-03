@@ -106,7 +106,9 @@ jobs:
           path: cypress/cache
           key: ${{ runner.os }}-cypress-cache-${{ hashFiles('cypress/cache/**') }}
       - name: Install angular
-        run: npm i -g @angular/cli
+        run: |
+          npm i -g @angular/cli
+          ng add @cypress/schematic
       - name: Test
         id: e2e-tests
         run: npm run test:e2e:${{ matrix.browser }}
