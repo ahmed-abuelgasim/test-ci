@@ -104,7 +104,7 @@ jobs:
         id: cypress-cache
         with:
           path: cypress/cache
-          key: ${{ runner.os }}-cypress-cache-${{ hashFiles('cypress/cache/**') }}
+          key: ${{ runner.os }}-cypress-cache-${{ hashFiles('package.json', 'package-lock.json') }}
       - name: Install angular
         run: |
           npm i -g @angular/cli
