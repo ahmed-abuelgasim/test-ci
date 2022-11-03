@@ -54,4 +54,6 @@ declare namespace Cypress {
 import { addMatchImageSnapshotCommand, matchImageSnapshot } from '@simonsmith/cypress-image-snapshot/command';
 
 
-addMatchImageSnapshotCommand();
+addMatchImageSnapshotCommand({
+  allowSizeMismatch: true,
+});
