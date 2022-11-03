@@ -26,15 +26,16 @@ jobs:
         id: node-modules-cache
         with:
           path: node_modules
-          key: ${{ runner.os }}-node-modules-cache-${{ hashFiles('package-lock.json') }}
+          key: ${{ runner.os }}-node-modules-cache-${{ hashFiles('package.json', 'package-lock.json') }}
       - name: Cache Cypress
         uses: actions/cache@v3
         id: cypress-cache
+        if: ${{ hashFiles('cypress/cache/**') }} != ''
         with:
           path: cypress/cache
           key: ${{ runner.os }}-cypress-cache-${{ hashFiles('cypress/cache/**') }}
       - name: Install dependencies
-        if: steps.node-modules-cache.outputs.cache-hit != 'true'
+        if: steps.node-modules-cache.outputs.cache-hit != 'true' || ${{ hashFiles('cypress/cache/**') }} == ''
         run: npm install
 
   lint:
