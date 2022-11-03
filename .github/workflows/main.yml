@@ -108,7 +108,7 @@ jobs:
       - name: Install angular
         run: |
           npm i -g @angular/cli
-          ng add @cypress/schematic
+          ng add @cypress/schematic --skip-confirmation
       - name: Test
         id: e2e-tests
         run: npm run test:e2e:${{ matrix.browser }}
