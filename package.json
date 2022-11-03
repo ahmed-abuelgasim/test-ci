@@ -9,6 +9,7 @@
     "lint:sass": "npx stylelint \"**/*.scss\"",
     "ng": "ng",
     "start": "ng serve",
+    "test:e2e": "ng run watchlist-angular:cypress-run",
     "test:e2e:chrome": "ng run watchlist-angular:cypress-run:chrome",
     "test:e2e:edge": "ng run watchlist-angular:cypress-run:edge",
     "test:e2e:firefox": "ng run watchlist-angular:cypress-run:firefox",
