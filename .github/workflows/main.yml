@@ -81,6 +81,8 @@ jobs:
     name: End to End tests
     needs: [deps]
     runs-on: ubuntu-latest
+    container:
+      image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
     strategy:
       matrix:
         browser: ['chrome', 'edge', 'firefox']
@@ -103,6 +105,8 @@ jobs:
         with:
           path: cypress/cache
           key: ${{ runner.os }}-cypress-cache-${{ hashFiles('cypress/cache/**') }}
+      - name: Install angular
+        run: npm i -g @angular/cli
       - name: Test
         id: e2e-tests
         run: npm run test:e2e:${{ matrix.browser }}
