@@ -81,8 +81,8 @@ jobs:
     name: End to End tests
     needs: [deps]
     runs-on: ubuntu-latest
-    container:
-      image: cypress/included:10.0.0
+    # container:
+    #   image: cypress/included:10.0.0
     strategy:
       matrix:
         browser: ['chrome', 'edge', 'firefox']
