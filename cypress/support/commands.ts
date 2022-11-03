@@ -55,5 +55,5 @@ import { addMatchImageSnapshotCommand, matchImageSnapshot } from '@simonsmith/cy
 
 
 addMatchImageSnapshotCommand({
-  customDiffConfig: { threshold: 0.5 },
+  customDiffConfig: { threshold: 0.75 },
 });
